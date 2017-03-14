@@ -9,6 +9,27 @@ module.exports = {
   entry: [
     './app/app.jsx',
   ],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true,
+        screw_ie8: true,
+      },
+      output: {
+        comments: false,
+        screw_ie8: true,
+      },
+      sourceMap: false,
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+  ],
   output: {
     path: __dirname,
     filename: './public/bundle.js',
@@ -37,5 +58,4 @@ module.exports = {
       path.resolve(__dirname, './node_modules/foundation-sites/scss'),
     ],
   },
-  devtool: 'cheap-module-eval-source-map',
 };
