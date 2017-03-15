@@ -1,14 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const babelSettings = {
-  presets: ['react', 'es2015', 'stage-0'],
-};
 
 module.exports = {
-  entry: [
-    './app/app.jsx',
-  ],
+  entry: './app/app.jsx',
   output: {
     path: __dirname,
     filename: './public/bundle.js',
@@ -31,11 +26,13 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
       },
     ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    overlay: true,
+    port: 3000,
+    watchContentBase: true,
   },
-  sassLoader: {
-    includePaths: [
-      path.resolve(__dirname, './node_modules/foundation-sites/scss'),
-    ],
   },
   devtool: 'cheap-module-eval-source-map',
 };
