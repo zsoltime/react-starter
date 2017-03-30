@@ -33,6 +33,11 @@ module.exports = {
     port: 3000,
     watchContentBase: true,
   },
+  externals: {
+    // these lines are required for Enzyme
+    'react/addons': true,
+    'react/lib/ReactContext': 'window',
+    'react/lib/ExecutionEnvironment': true,
   },
   devtool: 'cheap-module-eval-source-map',
 };
