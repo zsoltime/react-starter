@@ -1,31 +1,69 @@
-const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './app/index.html',
+  filename: 'index.html',
+  inject: 'body',
+});
+const ExtractTextPluginConfig = new ExtractTextPlugin({
+  filename: 'style.css',
+});
 
 module.exports = {
   entry: './app/app.jsx',
   output: {
-    path: __dirname,
-    filename: './public/bundle.js',
+    path: path.resolve('dist'),
+    filename: 'bundle.js',
   },
   resolve: {
-    root: __dirname,
+    modules: [
+      path.resolve(__dirname),
+      'node_modules',
+      './app/components',
+    ],
     alias: {
-      applicationStyles: 'app/styles/app.sass',
+      styles: 'app/styles/style.sass',
     },
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
   module: {
-    loaders: [
-      {
-        loaders: [
-          `babel-loader?${JSON.stringify(babelSettings)}`,
-          'eslint-loader',
-        ],
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-      },
-    ],
+    rules: [{
+      test: /\.jsx?$/,
+      loaders: [
+        'babel-loader',
+        'eslint-loader',
+      ],
+      exclude: /node_modules/,
+    }, {
+      test: /\.s(a|c)ss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: { sourceMap: true },
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [autoprefixer],
+            sourceMap: true,
+          },
+        }, {
+          loader: 'sass-loader',
+          options: {
+            outputStyle: 'expanded',
+            sourceMap: true,
+          },
+        }],
+      }),
+    }],
+  },
+  plugins: [
+    HtmlWebpackPluginConfig,
+    ExtractTextPluginConfig,
+  ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
