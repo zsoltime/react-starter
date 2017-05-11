@@ -1,10 +1,17 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const { Route, Router, IndexRoute, hashHistory } = require('react-router');
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-require('style!css!sass!applicationStyles');
+import About from 'About';
+import Page from 'Page';
+import 'styles';
 
-ReactDOM.render(
-  <p>Boilerplate 3</p>,
-  document.getElementById('app'),
+render(
+  <Router basename={'/'}>
+    <div className="wrapper">
+      <Route exact path="/" component={Page} />
+      <Route path="/about" component={About} />
+    </div>
+  </Router>,
+  document.getElementById('app')
 );
