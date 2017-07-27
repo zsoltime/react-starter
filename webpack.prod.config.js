@@ -1,11 +1,11 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './app/index.html',
+  template: './src/index.html',
   filename: 'index.html',
   inject: 'body',
 });
@@ -14,7 +14,10 @@ const ExtractTextPluginConfig = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: './app/app.jsx',
+  entry: [
+    'react-hot-loader/patch',
+    './src/index.jsx',
+  ],
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
@@ -23,10 +26,12 @@ module.exports = {
     modules: [
       path.resolve(__dirname),
       'node_modules',
-      './app/components',
+      './src/components',
+      './src/containers',
     ],
     alias: {
-      styles: 'app/styles/style.sass',
+      App: 'src/App.jsx',
+      styles: 'src/styles/style.sass',
     },
     extensions: ['.js', '.jsx'],
   },
@@ -38,11 +43,12 @@ module.exports = {
       ],
       exclude: /node_modules/,
     }, {
-      test: /\.sass$/,
+      test: /\.s(a|c)ss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [{
           loader: 'css-loader',
+          options: { minimize: true },
         }, {
           loader: 'postcss-loader',
           options: {
@@ -52,6 +58,12 @@ module.exports = {
           loader: 'sass-loader',
         }],
       }),
+    }, {
+      test: /\.(gif|jpe?g|png|svg)$/i,
+      loader: 'url-loader',
+      options: {
+        limit: 25000,
+      },
     }],
   },
   plugins: [
