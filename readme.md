@@ -14,22 +14,62 @@ Simple React boilerplate with React router, Sass and Autoprefixer.
 - [Mocha](https://mochajs.org/) test framework
 - [Expect](https://github.com/mjackson/expect) assertion library
 
+## Folder Structure
+
+- `src/api/` - If you need to make calls to a backend API
+- `src/components/` - Presentational/stateless/dumb components
+- `src/containers/` - Containers/stateful components
+- `src/images/` - Your images
+- `src/styles/` - Your Sass files
+- `src/tests/` - Unit tests
+- `src/utils/` - Utility functions, error handlers, formatters, etc.
+- `src/index.jsx` - This is where you init the app and call render
+
 ## Install and Build
 
+You need to have `yarn` [installed](https://yarnpkg.com/lang/en/docs/install/) on your computer, or you can use `npm`.
+
+#### Clone this repo
+
 ``` bash
-# clone this repo
 git clone https://github.com/zsoltime/react-starter.git
 cd react-starter
+```
 
-# install dependencies
+#### Install dependencies
+
+``` bash
+yarn
+# OR
 npm install
+```
 
-# serve with hot reload on `localhost:3000`
+#### Start dev server with hot reload
+
+It builds HTML, CSS, and JavaScript bundle, starts a dev server and inject new versions of the files that you edited at runtime. Open [http://localhost:3000](http://localhost:3000) to view it in browser.
+
+``` bash
+yarn start
+# OR
 npm start
+```
 
-# build for production with minification
+#### Build production bundle
+
+It builds to the `dist` folder. It creates the JavaScript bundle, uglifies JS, minifies CSS - ready to deploy.
+
+``` bash
+yarn build
+# OR
 npm run build
+```
 
-# run tests
-npm test
+#### Run unit tests
+
+Run unit tests with Karma and Mocha
+
+``` bash
+yarn test
+# OR
+npm run test
 ```
