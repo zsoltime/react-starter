@@ -5,6 +5,7 @@ Simple React boilerplate with React router, Sass and Autoprefixer.
 ## Tools Used
 
 - [React.js library](https://facebook.github.io/react/)
+- [Redux](https://github.com/reactjs/redux)
 - [React Router](https://github.com/ReactTraining/react-router)
 - [Webpack module bundler](https://webpack.js.org/)
 - [Babel.js compiler](https://babeljs.io/)
