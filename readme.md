@@ -2,6 +2,8 @@
 
 Simple React boilerplate with React router, Sass and Autoprefixer.
 
+[![React starter](/src/images/icon.svg?raw=true)](https://zsolti.co/)
+
 ## Tools Used
 
 - [React.js library](https://facebook.github.io/react/)
@@ -14,6 +16,7 @@ Simple React boilerplate with React router, Sass and Autoprefixer.
 - [Karma](https://karma-runner.github.io) test runner
 - [Mocha](https://mochajs.org/) test framework
 - [Expect](https://github.com/mjackson/expect) assertion library
+- [Enzyme](https://github.com/airbnb/enzyme) testing utility
 
 ## Folder Structure
 
