@@ -2,7 +2,7 @@
 
 Simple React boilerplate with React router, Sass and Autoprefixer.
 
-[![React starter](/src/images/icon.svg?raw=true)](https://zsolti.co/)
+[![React starter](/src/images/icon.svg?raw=true&sanitize=true)](https://zsolti.co/)
 
 ## Tools Used
 
